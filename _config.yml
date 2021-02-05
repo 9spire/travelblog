@@ -12,6 +12,11 @@ facebook_username:
 instagram_username:  
 linkedin_username:
 
+# Style Update
+sass:
+  sass_dir: _sass
+  style: compressed
+
 # Add your google-analytics ID here to activate google analytics
 google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
 
