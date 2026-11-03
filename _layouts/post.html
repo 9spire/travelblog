@@ -2,53 +2,45 @@
 layout: default
 ---
 
-<!-- Page Header -->
-{% if page.background %}
-<header class="masthead" style="background-image: url('{{ page.background | prepend: site.baseurl | replace: '//', '/' }}')">
-  {% else %}
-  <header class="masthead">
+{% include cover-image.html post=page %}
+
+<header class="post-hero{% if cover_src %} post-hero--has-cover{% endif %}">
+  <div class="post-hero__inner">
+    <h1 class="post-hero__title">{{ page.title }}</h1>
+    {% if page.subtitle %}
+    <p class="page-hero__deck">{{ page.subtitle }}</p>
     {% endif %}
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1>{{ page.title }}</h1>
-            {% if page.subtitle %}
-            <h2 class="subheading">{{ page.subtitle }}</h2>
-            {% endif %}
-            <span class="meta">Posted by
-              <a href="#">{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}</a>
-              on {{ page.date | date: '%B %d, %Y' }} &middot; {% include read_time.html
-              content=page.content %}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-
-        {{ content }}
-
-        <hr>
-
-        <div class="clearfix">
-
-          {% if page.previous.url %}
-          <a class="btn btn-primary float-left" href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.previous.title }}">&larr; Previous<span class="d-none d-md-inline">
-              Post</span></a>
-          {% endif %}
-          {% if page.next.url %}
-          <a class="btn btn-primary float-right" href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.next.title }}">Next<span class="d-none d-md-inline">
-              Post</span> &rarr;</a>
-          {% endif %}
-
-        </div>
-
-      </div>
-    </div>
+    <p class="post-hero__meta">
+      {% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}
+      · <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%B %-d, %Y' }}</time>
+      · {% include read_time.html content=page.content %}
+    </p>
   </div>
+</header>
+
+{% if cover_src %}
+<figure class="post-cover">
+  <img src="{{ cover_src | relative_url }}" alt="">
+</figure>
+{% endif %}
+
+<article class="article">
+  <div class="article__inner">
+    <div class="article__body">
+      {{ content }}
+    </div>
+
+    <nav class="article__nav" aria-label="Post pagination">
+      <div>
+        {% if page.previous.url %}
+        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{ page.previous.title }}">← Previous</a>
+        {% endif %}
+      </div>
+      <div>
+        {% if page.next.url %}
+        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{ page.next.title }}">Next →</a>
+        {% endif %}
+      </div>
+    </nav>
+  </div>
+</article>

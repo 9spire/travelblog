@@ -1,6 +1,12 @@
 source "https://rubygems.org"
 
 gem "jekyll", ">= 3.8.5"
+# Ruby 3.4+/4.0 moved these out of default gems
+gem "logger"
+gem "csv"
+gem "base64"
+gem "bigdecimal"
+gem "webrick"
 
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.6"

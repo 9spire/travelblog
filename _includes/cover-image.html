@@ -1,0 +1,17 @@
+{% comment %}
+  Sets cover_src only when the post body contains a real /img/ source.
+  Never invents or cycles fallback covers.
+{% endcomment %}
+{% assign cover_src = nil %}
+{% if include.post.content contains 'src="' %}
+  {% assign cover_parts = include.post.content | split: 'src="' %}
+  {% if cover_parts.size > 1 %}
+    {% assign cover_after = cover_parts[1] | split: '"' %}
+    {% assign cover_candidate = cover_after[0] | strip %}
+    {% assign cover_candidate = cover_candidate | replace: '{{ site.baseurl }}', site.baseurl %}
+    {% assign cover_candidate = cover_candidate | replace: '{{site.baseurl}}', site.baseurl %}
+    {% if cover_candidate contains '/img/' or cover_candidate contains 'img/' %}
+      {% assign cover_src = cover_candidate %}
+    {% endif %}
+  {% endif %}
+{% endif %}
