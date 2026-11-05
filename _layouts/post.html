@@ -3,8 +3,10 @@ layout: default
 ---
 
 {% include cover-image.html post=page %}
+{% assign header_bg = cover_src | default: '/img/bg-post.jpg' %}
 
-<header class="post-hero{% if cover_src %} post-hero--has-cover{% endif %}">
+<header class="post-hero post-hero--image" style="background-image: url('{{ header_bg | relative_url }}');">
+  <div class="post-hero__shade" aria-hidden="true"></div>
   <div class="post-hero__inner">
     <h1 class="post-hero__title">{{ page.title }}</h1>
     {% if page.subtitle %}
@@ -17,12 +19,6 @@ layout: default
     </p>
   </div>
 </header>
-
-{% if cover_src %}
-<figure class="post-cover">
-  <img src="{{ cover_src | relative_url }}" alt="">
-</figure>
-{% endif %}
 
 <article class="article">
   <div class="article__inner">

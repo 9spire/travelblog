@@ -1,9 +1,11 @@
 ---
 layout: default
 title: Posts
+background: '/img/bg-post.jpg'
 ---
 
-<header class="page-hero">
+<header class="page-hero page-hero--image" style="background-image: url('{{ page.background | relative_url }}');">
+  <div class="page-hero__shade" aria-hidden="true"></div>
   <div class="page-hero__inner">
     <h1 class="page-hero__title">{{ page.title }}</h1>
   </div>
