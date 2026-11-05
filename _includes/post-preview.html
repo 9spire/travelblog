@@ -1,10 +1,5 @@
 {% include cover-image.html post=include.post %}
 <article class="entry{% if cover_src %} entry--has-photo{% endif %}">
-  {% if cover_src %}
-  <a class="entry__media" href="{{ include.post.url | prepend: site.baseurl | replace: '//', '/' }}" tabindex="-1" aria-hidden="true">
-    <img src="{{ cover_src | relative_url }}" alt="" loading="lazy" width="640" height="480">
-  </a>
-  {% endif %}
   <time class="entry__date" datetime="{{ include.post.date | date: '%Y-%m-%d' }}">{{ include.post.date | date: '%b %-d' }}</time>
   <div class="entry__body">
     <h3 class="entry__title">
@@ -22,4 +17,9 @@
       {% endif %}
     </p>
   </div>
+  {% if cover_src %}
+  <a class="entry__media" href="{{ include.post.url | prepend: site.baseurl | replace: '//', '/' }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ cover_src | relative_url }}" alt="" loading="lazy" width="640" height="480">
+  </a>
+  {% endif %}
 </article>

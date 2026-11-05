@@ -459,7 +459,7 @@ p {
 }
 
 .entry--has-photo {
-  grid-template-columns: minmax(8rem, 11rem) 7.5rem 1fr;
+  grid-template-columns: 7.5rem 1fr minmax(8rem, 11rem);
   align-items: center;
 
   @media (max-width: 720px) {
@@ -473,8 +473,9 @@ p {
   overflow: hidden;
   aspect-ratio: 4 / 3;
   background: var(--paper-deep);
-  grid-row: 1;
   text-decoration: none;
+  justify-self: end;
+  width: 100%;
 
   img {
     width: 100%;
@@ -488,19 +489,8 @@ p {
   }
 
   @media (max-width: 720px) {
-    max-width: 18rem;
-  }
-}
-
-.entry--has-photo .entry__date {
-  @media (min-width: 721px) {
-    grid-column: 2;
-  }
-}
-
-.entry--has-photo .entry__body {
-  @media (min-width: 721px) {
-    grid-column: 3;
+    max-width: 14rem;
+    justify-self: start;
   }
 }
 
